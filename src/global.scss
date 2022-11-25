@@ -1,0 +1,71 @@
+@use "./app/app.component.scss";
+// @use "./app/features/login/login.page.scss";
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+#indietro {
+  display: flex;
+  align-items: center;
+  padding: 1em;
+  margin: 1em;
+  background-color: hsl(80, 61%, 50%);
+  color: white;
+  border-radius: 5px;
+  &:hover {
+    transform: scale(1.1) !important;
+    background-color: hsl(80, 61%, 44%);
+    transition-duration: 0.1s;
+  }
+}
+
+input:focus {
+  border: none;
+  outline: none;
+}
+
+//scrollbar
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.745);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: white;
+}
+
+#container-list {
+  background: #642B73;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #C6426E, #642B73);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #C6426E, #642B73);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
