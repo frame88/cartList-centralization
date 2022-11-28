@@ -11,6 +11,8 @@ import { NgForm } from '@angular/forms';
 import { RespINewProd } from '../models/INewProd';
 import { Router } from '@angular/router';
 
+import { IModProd } from '../models/IModProd';
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +20,8 @@ import { Router } from '@angular/router';
 export class CentralService {
 
   products: Products[] = [];
+  iddi;
+  infoProd;
 
   constructor( private http: HttpClient, private router: Router) {}
 
@@ -69,6 +73,58 @@ export class CentralService {
     .subscribe(result => {
       form.reset();
     });
+  }
+
+  //OTTIENE INFO SU UN PRODOTTO
+  info(id: number) {
+    const token = JSON.parse(localStorage.getItem('token')).token;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    this.http.get<Products>(`${environment.API.backend}/api/ShoppingCart/${id}`, {headers})
+    .subscribe((result: Products) => {
+      this.infoProd = result;
+      console.log('info sul prodotto particolare: ', this.infoProd);
+      /*in queste due righe sotto, ottengo l'id particolare che voreri passarmi
+      nell'altro file, dopodichè, copio la funzione getall() nell altro file, e faccio un ciclo
+      con prdocutINproducts, e trovo tramite l'id i dati che mi servono.
+      Tutto sta nel passare la variabile.
+
+      In alternativa potrei, portarmi tutto il modello dal file nuovapagina
+      al file detail, cosi da non dover rifare la chiamata e un ciclo for
+      in detail.page
+
+      => come passo una variabile? che sia un id o un array...
+      */
+      this.iddi = id;
+      console.log(id, this.iddi);
+    });
+  }
+
+    //MODIFICA IL PRODOTTO PARTICOLARE
+  edit(form: NgForm, id: number) {
+    console.log(form);
+    const bodyy: IModProd =
+    {
+      id: form.value.id,
+      category: form.value.category,
+      productName: form.value.productName,
+      quantity: form.value.quantity,
+      unitCost: form.value.unitCost,
+      orderDate: form.value.orderDate
+    };
+    const token = JSON.parse(localStorage.getItem('token')).token;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    this.http.put(`${environment.API.backend}/api/ShoppingCart`, bodyy, {headers} )
+    .subscribe(() => {
+      console.log(this.products);
+    });
+
+    this.router.navigateByUrl('nuovapagina');
   }
 
 }
