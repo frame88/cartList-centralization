@@ -1,10 +1,9 @@
 import { CentralService } from './../service/central.service';
 /* eslint-disable quote-props */
 /* eslint-disable @typescript-eslint/naming-convention */
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
-import { Products } from '../models/IGetAll';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

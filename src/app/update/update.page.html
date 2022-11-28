@@ -5,14 +5,14 @@
 </ion-header>
 
 <ion-content>
-  <div id="container-list" style="height: 100%;">
+  <div id="container-list" style="height: 140vh!important;">
   <ion-row>
     <button id="indietro" routerLink="/nuovapagina" routerLinkActive="active">
       <ion-icon class="ion-no-margin" name="chevron-back-outline"></ion-icon>
       indietro
     </button>
   </ion-row>
-  <div class="ion-margin ion-padding-top" style=" ">
+  <div class="ion-margin ion-padding-top">
     <form style="display: flex; flex-direction: column;width: 40%;" #g="ngForm">
       <ion-label>ID</ion-label>
       <input style="margin-bottom: 0.7em; border: hidden; border-top: 2px solid gray;border-right: 2px solid gray; border-radius: 0px 10px 5px 5px;" type="number" placeholder="id..." [ngModel] name="id" required>
@@ -33,9 +33,10 @@
 
       <ion-label>Price</ion-label>
       <input style="margin-bottom: 0.7em; border: hidden; border-bottom: 1px solid gray;" type="number" min="1" placeholder="Price..." [ngModel] name="unitCost">
-
       <ion-label>Date</ion-label>
-      <input style="margin-bottom: 0.7em; border: hidden; border-bottom: 2px solid gray; border-right: 2px solid gray; border-radius: 0px 5px 10px 5px;" type="date" [ngModel] name="orderDate">
+      <input
+        style="margin-bottom: 0.7em; border: hidden; border-bottom: 2px solid gray; border-right: 2px solid gray; border-radius: 0px 5px 10px 5px;"
+        type="date" [ngModel] name="orderDate">
       <ion-row>
         <div
           style="display: flex; width: 100%; justify-content: end; align-items: center; margin-top: 1em; transform: translateX(7em);">

@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { LoginPageModule } from './core/login/login/login.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NuovapaginaPageModule } from './nuovapagina/nuovapagina.module';
+import { FormsModule } from '@angular/forms';
 
 
 const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
@@ -28,7 +29,8 @@ const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     CommonModule,
     LoginPageModule,
     HttpClientModule,
-    NuovapaginaPageModule
+    NuovapaginaPageModule,
+    FormsModule
     ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

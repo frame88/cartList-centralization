@@ -21,6 +21,7 @@ ion-input {
   margin-top: 0.3em;
   margin-bottom: 1em;
   border-radius: 5px !important;
+  box-shadow: 2px 7px 10px #00000046;
 }
 
 button {
@@ -28,15 +29,19 @@ button {
   padding: 1em;
   border-radius: 10px;
   color: white;
+  font-weight: 600;
+  box-shadow: 2px 7px 10px #00000046;
   &:hover {
-      transform: scale(0.9) !important;
-      transition-duration: 0.5s;
-      cursor: pointer;
+    transform: scale(0.9) !important;
+    font-weight: 600;
+    box-shadow: 1px 4px 10px #00000046;
+    cursor: pointer;
+    transition-duration: 0.5s;
     }
 }
 
 #fascyo {
-  background-color: #121212;
+  background-color: white;
   transform: rotate(20deg);
   height: 100vh;
   width: 50px;

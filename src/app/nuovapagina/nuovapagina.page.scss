@@ -9,9 +9,9 @@
 
   &:hover {
     transform: scale(1.1) !important;
-    color: yellowgreen;
-    background-color: white;
+    background-color: hsl(80, 61%, 44%);
     border: 1px solid rgba(153, 205, 50, 0.411);
+    box-shadow: 5px 5px 10px #00000046;
     transition-duration: 0.4s;
   }
 
@@ -46,6 +46,21 @@ ion-icon:hover {
       letter-spacing: .2rem;
       transition-duration: 0.8s;
     }
+  }
+}
+
+#prodakt-bg {
+  border: 1px solid white;
+  box-shadow: 10px 15px 10px #00000091;
+  width: 60vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em;
+  border-radius: 15px;
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+  &:hover{
+    box-shadow: 10px 15px 10px #ee2e2e91;
   }
 }
 

@@ -13,11 +13,11 @@
      routerLink="/new" routerLinkActive="active"><ion-icon style="font-size: 150%; margin-right: 5px;" name="add-circle-outline"></ion-icon>crea </button>
     <!-- nuova visualizzazione prodotti -->
     <div id="prodakt" *ngFor="let product of this.central.products" style="color: white; cursor: pointer;">
-      <ion-row style="line-height: 25px; margin-bottom: 1em;  border: 1px solid white; border-radius: 15px;">
-        <div style="width: 60vw; display: flex; justify-content: space-between; align-items: center;; padding: 0.5em; border-radius: 15px;background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);">
+      <ion-row style="line-height: 25px; margin-bottom: 1em; border-radius: 15px;">
+        <div id="prodakt-bg">
           <div routerLink="/detail" routerLinkActive="active" style="width: 80%; align-self: center;">
             <div style="display: flex;">
-              <span id="nameProduct" style="text-transform: capitalize;">{{ product.productName }} | </span>
+              <span id="nameProduct" style="text-transform: capitalize;">{{ product.productName }} </span>
               <span style="font-size: 70%; color: yellow; margin-left: 5px;">{{ product.unitCost }}€</span>
             </div>
             <span style="text-transform: capitalize; font-size: 12px;">iD: {{ product.id }}</span>

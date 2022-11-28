@@ -12,7 +12,7 @@ import { RespINewProd } from '../models/INewProd';
 import { Router } from '@angular/router';
 
 import { IModProd } from '../models/IModProd';
-
+import { IDelete } from '../models/IDelete';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +22,7 @@ export class CentralService {
   products: Products[] = [];
   iddi;
   infoProd;
+  errorMessage = '';
 
   constructor( private http: HttpClient, private router: Router) {}
 
@@ -35,8 +36,14 @@ export class CentralService {
     //console.log(this.auth.tok);
     this.http.get<IGetAll>(`${environment.API.backend}/api/ShoppingCart`, {headers})
     .subscribe(result => {
-      this.products = result.data;
-      console.log(this.products);
+      if (result.success) {
+        this.products = result.data;
+        console.log(this.products);
+      }
+      else {
+        this.errorMessage = result.errorMessage;
+        console.log(this.errorMessage);
+      }
     });
   }
 
@@ -48,10 +55,16 @@ export class CentralService {
       // eslint-disable-next-line quote-props
       'Authorization': `Bearer ${token}`
     });
-    this.http.delete(`${environment.API.backend}/api/ShoppingCart/${id}`, {headers})
-    .subscribe(() => {
-      this.products = this.products.filter(product => product.id !== id);
-      console.log(this.products);
+    this.http.delete<IDelete>(`${environment.API.backend}/api/ShoppingCart/${id}`, {headers})
+    .subscribe(result => {
+      if (result.success) {
+        this.products = this.products.filter(product => product.id !== id);
+        console.log(this.products);
+      }
+      else {
+        this.errorMessage = result.errorMessage;
+        console.log(this.errorMessage);
+      }
     });
   }
 
@@ -71,7 +84,13 @@ export class CentralService {
     });
     this.http.post<RespINewProd>(`${environment.API.backend}/api/ShoppingCart`, form.value, {headers})
     .subscribe(result => {
-      form.reset();
+      if (result.success) {
+        form.reset();
+      }
+      else {
+        this.errorMessage = result.errorMessage;
+        console.log(this.errorMessage);
+      }
     });
   }
 
@@ -86,17 +105,6 @@ export class CentralService {
     .subscribe((result: Products) => {
       this.infoProd = result;
       console.log('info sul prodotto particolare: ', this.infoProd);
-      /*in queste due righe sotto, ottengo l'id particolare che voreri passarmi
-      nell'altro file, dopodichè, copio la funzione getall() nell altro file, e faccio un ciclo
-      con prdocutINproducts, e trovo tramite l'id i dati che mi servono.
-      Tutto sta nel passare la variabile.
-
-      In alternativa potrei, portarmi tutto il modello dal file nuovapagina
-      al file detail, cosi da non dover rifare la chiamata e un ciclo for
-      in detail.page
-
-      => come passo una variabile? che sia un id o un array...
-      */
       this.iddi = id;
       console.log(id, this.iddi);
     });
@@ -119,9 +127,15 @@ export class CentralService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    this.http.put(`${environment.API.backend}/api/ShoppingCart`, bodyy, {headers} )
-    .subscribe(() => {
-      console.log(this.products);
+    this.http.put<RespINewProd>(`${environment.API.backend}/api/ShoppingCart`, bodyy, {headers} )
+    .subscribe(result => {
+      if (result.success) {
+        console.log(this.products);
+      }
+      else {
+        this.errorMessage = result.errorMessage;
+        console.log(this.errorMessage);
+      }
     });
 
     this.router.navigateByUrl('nuovapagina');
