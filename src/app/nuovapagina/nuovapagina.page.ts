@@ -10,6 +10,7 @@ import { IGetAll, Products } from '../models/IGetAll';
 import { RespINewProd } from '../models/INewProd';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../core/login/auth.service';
+import { CentralService } from '../service/central.service';
 
 @Component({
   selector: 'app-nuovapagina',
@@ -23,29 +24,12 @@ export class NuovapaginaPage implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private auth: AuthService
-     ) {
-        this.getAll();
-      }
+    private auth: AuthService,
+    public central: CentralService
+    ) {}
 
   ngOnInit() {
-  }
-
-  //STAMPA TUTTI I PRODOTTI
-  getAll() {
-
-    const token = JSON.parse(localStorage.getItem('token')).token;
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      // eslint-disable-next-line quote-props
-      'Authorization': `Bearer ${token}`
-    });
-    //console.log(this.auth.tok);
-    this.http.get<IGetAll>(`${environment.API.backend}/api/ShoppingCart`, {headers})
-    .subscribe(result => {
-      this.products = result.data;
-      console.log(this.products);
-    });
+    console.log(this.central.getAll());
   }
 
   save(form: NgForm) {
@@ -62,7 +46,7 @@ export class NuovapaginaPage implements OnInit {
     });
     this.http.post<RespINewProd>(`${environment.API.backend}/api/ShoppingCart`, form.value, {headers})
     .subscribe(result => {
-      this.getAll();
+      //this.getAll();
       form.reset();
     });
   }

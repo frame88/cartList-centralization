@@ -7,6 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { RespINewProd } from '../models/INewProd';
 import { Router } from '@angular/router';
+import { CentralService } from '../service/central.service';
 
 @Component({
   selector: 'app-new',
@@ -17,13 +18,15 @@ export class NewPage implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private central: CentralService
   ) { }
 
   ngOnInit() {
+    //console.log(this.central.a)
   }
 
-    save(form: NgForm) {
+  save(form: NgForm) {
     console.log(form.value);
     this.add(form);
     this.router.navigateByUrl('nuovapagina');
@@ -37,10 +40,7 @@ export class NewPage implements OnInit {
     });
     this.http.post<RespINewProd>(`${environment.API.backend}/api/ShoppingCart`, form.value, {headers})
     .subscribe(result => {
-      //this.getAll();
       form.reset();
     });
   }
-
-
 }
