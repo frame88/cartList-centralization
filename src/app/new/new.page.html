@@ -10,7 +10,7 @@
     <ion-icon name="chevron-back-outline"></ion-icon>indietro
   </button>
   <div class="ion-margin ion-padding-top">
-    <form style="display: flex; flex-direction: column;width: 40%;" #f="ngForm" (submit)="save(f)">
+    <form style="display: flex; flex-direction: column;width: 40%;" #f="ngForm" (submit)="this.central.save(f)">
       <ion-label>Categoria</ion-label>
       <input style="margin-bottom: 0.7em;margin-bottom: 0.7em; border: hidden; border-top: 2px solid gray;border-right: 2px solid gray; border-radius: 0px 10px 5px 5px;" type="text" placeholder="Categoria..." [ngModel] name="category">
       <!-- <select style="margin-bottom: 0.7em;" placeholder="Product type:" [ngModel] id="type" name="category">

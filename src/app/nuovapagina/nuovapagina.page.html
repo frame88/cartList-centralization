@@ -28,7 +28,7 @@
             <ion-icon routerLink="/update" routerLinkActive="active" style="border: 1px solid white; cursor: pointer; background-color: rgb(157, 0, 255); padding: 10px; border-radius: 50%; width: 20px; height: 20px;"
               name="pencil-outline"></ion-icon>
               <ion-icon style="border: 1px solid white; cursor: pointer;background-color: red; padding: 10px; border-radius: 50%; width: 20px; height: 20px;" name="trash-outline"
-              (click)="deleteHandler(product.id)"></ion-icon>
+              (click)="this.central.deleteHandler(product.id)"></ion-icon>
             </div>
           </div>
         </ion-row>

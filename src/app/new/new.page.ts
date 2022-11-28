@@ -2,10 +2,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
 
-import { environment } from 'src/environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { NgForm } from '@angular/forms';
-import { RespINewProd } from '../models/INewProd';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CentralService } from '../service/central.service';
 
@@ -19,28 +16,8 @@ export class NewPage implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private central: CentralService
+    public central: CentralService
   ) { }
 
-  ngOnInit() {
-    //console.log(this.central.a)
-  }
-
-  save(form: NgForm) {
-    console.log(form.value);
-    this.add(form);
-    this.router.navigateByUrl('nuovapagina');
-  }
-
-  add(form: NgForm) {
-    const token = JSON.parse(localStorage.getItem('token')).token;
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    });
-    this.http.post<RespINewProd>(`${environment.API.backend}/api/ShoppingCart`, form.value, {headers})
-    .subscribe(result => {
-      form.reset();
-    });
-  }
+  ngOnInit() {}
 }

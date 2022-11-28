@@ -32,42 +32,6 @@ export class NuovapaginaPage implements OnInit {
     console.log(this.central.getAll());
   }
 
-  save(form: NgForm) {
-    console.log(form.value);
-    this.add(form);
-  }
-
-  add(form: NgForm) {
-    const token = JSON.parse(localStorage.getItem('token')).token;
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      // eslint-disable-next-line quote-props
-      'Authorization': `Bearer ${token}`
-    });
-    this.http.post<RespINewProd>(`${environment.API.backend}/api/ShoppingCart`, form.value, {headers})
-    .subscribe(result => {
-      //this.getAll();
-      form.reset();
-    });
-  }
-
-  //ELIMINA IL PRODOTTO PARTICOLARE
-
-  deleteHandler(id: number){
-    const token = JSON.parse(localStorage.getItem('token')).token;
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      // eslint-disable-next-line quote-props
-      'Authorization': `Bearer ${token}`
-    });
-    this.http.delete(`${environment.API.backend}/api/ShoppingCart/${id}`, {headers})
-    .subscribe(() => {
-      this.products = this.products.filter(product => product.id !== id);
-      console.log(this.products);
-    });
-  }
-
-
   //MODIFICA IL PRODOTTO PARTICOLARE
   edit(form: NgForm, id: number) {
     console.log(form);
