@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable no-underscore-dangle */
 import { Injectable, OnDestroy } from '@angular/core';
 import {
   HttpInterceptor,
@@ -22,7 +24,7 @@ export class HttpCustomInterceptor implements HttpInterceptor, OnDestroy {
   ) {}
 
   ngOnDestroy(): void {
-    if (this.subscription) this.subscription.unsubscribe();
+    if (this.subscription) { this.subscription.unsubscribe(); }
   }
 
   intercept(
@@ -49,16 +51,10 @@ export class HttpCustomInterceptor implements HttpInterceptor, OnDestroy {
           // Error custom message Http interceptor 401 //
           return this.handle401Error(request, next);
         } else if (err.status === 403) {
-          this.route.navigateByUrl('access-denied');
+          //this.route.navigateByUrl('access-denied');
         } else {
-          if (err.status == 500 && _userLogged) {
+          if (err.status === 500 && _userLogged) {
             // Error custom message Http interceptor 500 //
-            const dialogConfig = new MatDialogConfig();
-            dialogConfig.disableClose = true;
-            dialogConfig.autoFocus = true;
-            dialogConfig.width = '50%';
-            dialogConfig.data = err.error as IException;
-            this.dialog.open(ServerErrorComponent, dialogConfig);
           }
         }
 
@@ -70,7 +66,8 @@ export class HttpCustomInterceptor implements HttpInterceptor, OnDestroy {
   private addToken(request: HttpRequest<any>, token: string) {
     return request.clone({
       setHeaders: {
-        Authorization: `Bearer ${token}`,
+        // eslint-disable-next-line quote-props
+        'Authorization': `Bearer ${token}`,
       },
     });
   }
@@ -103,3 +100,6 @@ export class HttpCustomInterceptor implements HttpInterceptor, OnDestroy {
     }
   }
 }
+
+
+

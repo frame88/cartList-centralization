@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable quote-props */
 /* eslint-disable @typescript-eslint/naming-convention */
 /*
@@ -16,9 +17,6 @@ import { NavController } from '@ionic/angular';
 import { IAuth } from 'src/app/models/IAuth';
 import { IToken } from 'src/app/models/IToken';
 import { IUserInfo } from 'src/app/models/IUserInfo';
-
-import { HttpInterceptor } from '@angular/common/http';
-import { IRefresh } from 'src/app/models/IRefresh';
 
 @Injectable({
   providedIn: 'root'
@@ -103,6 +101,28 @@ export class AuthService {
       }
     });
   }
+
+    //creazione della funzione refresh token
+  refreshToken() {
+    localStorage.removeItem(SessionKey.USER_DATA_SESSION);
+
+    let _tokenSession: IToken = JSON.parse(
+      localStorage.getItem(SessionKey.TOKEN_DATA_SESSION) ?? ''
+    );
+
+    const header = {
+      headers: new HttpHeaders().set(
+        'Authorization',
+        `Bearer ${_tokenSession.refreshToken}`
+      ),
+    };
+
+    return this.http
+      .get<IToken>(`${environment.middleware}Token/Refresh`, header)
+      .pipe(tap((_res) => this._setSession(_res)));
+  }
+  //termine della funzione
+
   isLogged(){
     if(localStorage.getItem('token')){
 
