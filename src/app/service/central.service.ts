@@ -47,8 +47,17 @@ export class CentralService {
     });
   }
 
-  //ELIMINA IL PRODOTTO PARTICOLARE
-  deleteHandler(id: number){
+  areUsure() {
+  let text = 'Press a button!\nEither OK or Cancel.';
+  if (confirm(text) === true) {
+    //incollo la chiamata DELETE
+  } else {
+    text = 'You canceled!';
+  }
+}
+
+    //ELIMINA IL PRODOTTO PARTICOLARE
+    deleteHandler(id: number){
     const token = JSON.parse(localStorage.getItem('token')).token;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -67,6 +76,7 @@ export class CentralService {
       }
     });
   }
+
 
   //SALVA IL FORM
   save(form: NgForm) {
@@ -110,7 +120,7 @@ export class CentralService {
     });
   }
 
-    //MODIFICA IL PRODOTTO PARTICOLARE
+  //MODIFICA IL PRODOTTO PARTICOLARE
   edit(form: NgForm, id: number) {
     console.log(form);
     const bodyy: IModProd =
