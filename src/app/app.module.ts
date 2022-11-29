@@ -1,3 +1,4 @@
+import { HttpCustomInterceptor } from './service/http-custom-interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -10,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { LoginPageModule } from './core/login/login/login.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NuovapaginaPageModule } from './nuovapagina/nuovapagina.module';
 import { FormsModule } from '@angular/forms';
 
@@ -32,7 +33,14 @@ const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     NuovapaginaPageModule,
     FormsModule
     ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpCustomInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
