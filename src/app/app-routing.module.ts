@@ -22,19 +22,21 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./core/login/login/login.module').then(m => m.LoginPageModule),
-
   },
   {
     path: 'detail',
-    loadChildren: () => import('./detail/detail.module').then( m => m.DetailPageModule)
+    loadChildren: () => import('./detail/detail.module').then( m => m.DetailPageModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'update',
-    loadChildren: () => import('./update/update.module').then( m => m.UpdatePageModule)
+    loadChildren: () => import('./update/update.module').then( m => m.UpdatePageModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'new',
-    loadChildren: () => import('./new/new.module').then( m => m.NewPageModule)
+    loadChildren: () => import('./new/new.module').then( m => m.NewPageModule),
+    canActivate: [AuthGuard],
   },
   /*
   {
