@@ -9,28 +9,37 @@
     <ion-icon name="chevron-back-outline"></ion-icon>indietro
   </button>
 
-  <div style="width: 400px; height: 400px; background-color: white; border-radius: 15px; margin-left: 1em;">
+  <div style="width: 400px; height: 400px; background-color: rgba(255, 255, 255, 0.644); border-radius: 15px; margin-left: 1em; display: flex; align-items: center;">
     <div *ngIf="central.infoProd !== null" class="ion-padding info-product-detail" style="text-align: center; text-transform: capitalize;">
-      <ion-row>
-        <span class="detail-span-bold">nome:&nbsp;</span>
-        <span>{{central.infoProd.data.productName}}</span>
-      </ion-row>
-      <ion-row>
-        <span class="detail-span-bold">categoria:&nbsp;</span>
-        <span>{{central.infoProd.data.category}}</span>
-      </ion-row>
-      <ion-row>
-        <span class="detail-span-bold">quantità:&nbsp;</span>
-        <span>{{central.infoProd.data.quantity}}</span>
-      </ion-row>
-      <ion-row>
-        <span class="detail-span-bold">costo:&nbsp;</span>
-        <span>{{central.infoProd.data.unitCost}}</span>
-      </ion-row>
-      <ion-row>
-        <span class="detail-span-bold">data dell' ordine:&nbsp;</span>
-        <span>{{central.infoProd.data.orderDate}}</span>
-      </ion-row>
+      <ion-card style="width: 100%!important;">
+        <ion-card-header>
+          <ion-card-title>Prodotto {{iddi}}</ion-card-title>
+          <ion-card-subtitle>Dettagli</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-row>
+            <span class="detail-span-bold">nome:&nbsp;</span>
+            <span>{{central.infoProd.data.productName}}</span>
+          </ion-row>
+          <ion-row>
+            <span class="detail-span-bold">categoria:&nbsp;</span>
+            <span>{{central.infoProd.data.category}}</span>
+          </ion-row>
+          <ion-row>
+            <span class="detail-span-bold">quantità:&nbsp;</span>
+            <span>{{central.infoProd.data.quantity}}</span>
+          </ion-row>
+          <ion-row>
+            <span class="detail-span-bold">costo:&nbsp;</span>
+            <span>{{central.infoProd.data.unitCost}}€</span>
+          </ion-row>
+          <ion-row>
+            <span class="detail-span-bold">data dell' ordine:&nbsp;</span>
+            <span>{{central.infoProd.data.orderDate | date:'dd MM y'}} </span>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
     </div>
   </div>
 

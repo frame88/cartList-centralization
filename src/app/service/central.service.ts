@@ -49,14 +49,14 @@ export class CentralService {
     });
   }
 
-  areUsure() {
-  let text = 'Press a button!\nEither OK or Cancel.';
-  if (confirm(text) === true) {
-    //incollo la chiamata DELETE
-  } else {
-    text = 'You canceled!';
-  }
-}
+//   areUsure() {
+//   let text = 'Press a button!\nEither OK or Cancel.';
+//   if (confirm(text) === true) {
+//     //incollo la chiamata DELETE
+//   } else {
+//     text = 'You canceled!';
+//   }
+// }
 
     //ELIMINA IL PRODOTTO PARTICOLARE
     deleteHandler(id: number){
@@ -108,7 +108,6 @@ export class CentralService {
       }
     });
   }
-
   //OTTIENE INFO SU UN PRODOTTO
   info(id: number) {
     const token = JSON.parse(localStorage.getItem('token')).token;
