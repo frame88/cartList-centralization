@@ -39,7 +39,7 @@ export class HttpCustomInterceptor implements HttpInterceptor, OnDestroy {
     if (_userLogged && !request.url.includes('Auth')) {
       const _tokenSessionString =
         localStorage.getItem('token') ?? '';
-        console.log('ciao');
+        //console.log('ciao');
         // localStorage.getItem(SessionKey.TOKEN_DATA_SESSION) ?? '';
       const _tokenSession = JSON.parse(_tokenSessionString);
       request = this.addToken(request, _tokenSession.token);
@@ -69,7 +69,7 @@ export class HttpCustomInterceptor implements HttpInterceptor, OnDestroy {
   }
 
   private addToken(request: HttpRequest<any>, token: string) {
-    console.log(token);
+    //console.log(token);
     return request.clone({
       setHeaders: {
         // eslint-disable-next-line quote-props

@@ -118,14 +118,16 @@ export class CentralService {
       'Authorization': `Bearer ${token}`
     });
     */
-    this.http.get<Products>(`${environment.API.backend}/api/ShoppingCart/${id}`)
-    .subscribe((result: Products) => {
+    this.http.get<RespINewProd>(`${environment.API.backend}/api/ShoppingCart/${id}`)
+    .subscribe((result: RespINewProd) => {
       this.infoProd = result;
       console.log('info sul prodotto particolare: ', this.infoProd);
       this.iddi = id;
       console.log(id, this.iddi);
     });
   }
+
+
 
   //MODIFICA IL PRODOTTO PARTICOLARE
   edit(form: NgForm, id: number) {

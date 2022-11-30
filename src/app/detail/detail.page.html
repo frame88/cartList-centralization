@@ -9,7 +9,31 @@
     <ion-icon name="chevron-back-outline"></ion-icon>indietro
   </button>
 
-  <div style="width: 400px; height: 400px; background-color: white; border-radius: 15px; margin-left: 1em;"></div>
+  <div style="width: 400px; height: 400px; background-color: white; border-radius: 15px; margin-left: 1em;">
+    <div *ngIf="central.infoProd !== null" class="ion-padding info-product-detail" style="text-align: center; text-transform: capitalize;">
+      <ion-row>
+        <span class="detail-span-bold">nome:&nbsp;</span>
+        <span>{{central.infoProd.data.productName}}</span>
+      </ion-row>
+      <ion-row>
+        <span class="detail-span-bold">categoria:&nbsp;</span>
+        <span>{{central.infoProd.data.category}}</span>
+      </ion-row>
+      <ion-row>
+        <span class="detail-span-bold">quantità:&nbsp;</span>
+        <span>{{central.infoProd.data.quantity}}</span>
+      </ion-row>
+      <ion-row>
+        <span class="detail-span-bold">costo:&nbsp;</span>
+        <span>{{central.infoProd.data.unitCost}}</span>
+      </ion-row>
+      <ion-row>
+        <span class="detail-span-bold">data dell' ordine:&nbsp;</span>
+        <span>{{central.infoProd.data.orderDate}}</span>
+      </ion-row>
+    </div>
+  </div>
+
 </div>
 
   <!--
