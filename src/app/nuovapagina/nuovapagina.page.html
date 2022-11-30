@@ -15,7 +15,8 @@
     <div id="prodakt" *ngFor="let product of this.central.products" style="color: white; cursor: pointer;">
       <ion-row style="line-height: 25px; margin-bottom: 1em; border-radius: 15px;">
         <div id="prodakt-bg">
-          <div routerLink="/detail" routerLinkActive="active" style="width: 80%; align-self: center;">
+          <!-- <div routerLink="/detail" routerLinkActive="active" style="width: 80%; align-self: center;"> -->
+          <div [routerLink]="['/nuovapagina', product.id]" style="width: 80%; align-self: center;">
             <div style="display: flex;">
               <span id="nameProduct" style="text-transform: capitalize;">{{ product.productName }} </span>
               <span style="font-size: 70%; color: yellow; margin-left: 5px;">{{ product.unitCost }}€</span>

@@ -15,6 +15,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'nuovapagina/:id',
+    loadChildren: () => import('./detail/detail.module').then( m => m.DetailPageModule),
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'login',
     loadChildren: () => import('./core/login/login/login.module').then(m => m.LoginPageModule),
 
