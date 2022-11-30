@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Subscription, interval } from 'rxjs';
 import { NavController } from '@ionic/angular';
 
@@ -104,23 +104,24 @@ export class AuthService {
 
     //creazione della funzione refresh token
   refreshToken() {
-    localStorage.removeItem(SessionKey.USER_DATA_SESSION);
+    const token = JSON.parse(localStorage.getItem('token')).token;
 
-    let _tokenSession: IToken = JSON.parse(
-      localStorage.getItem(SessionKey.TOKEN_DATA_SESSION) ?? ''
+    const _tokenSession = JSON.parse(
+      localStorage.getItem('token') ?? ''
     );
-
-    const header = {
-      headers: new HttpHeaders().set(
-        'Authorization',
-        `Bearer ${_tokenSession.refreshToken}`
-      ),
+    {
+    const body = {
+      token: _tokenSession.token,
+      refreshToken:  _tokenSession.refreshToken
     };
 
     return this.http
-      .get<IToken>(`${environment.middleware}Token/Refresh`, header)
-      .pipe(tap((_res) => this._setSession(_res)));
-  }
+    .post<IToken>(`${environment.API.backend}/api/Auth/RefreshToken`, body)
+    .pipe(tap((res) => {
+        localStorage.setItem('token', JSON.stringify(res.data));
+      }
+    ));
+  }}
   //termine della funzione
 
   isLogged(){

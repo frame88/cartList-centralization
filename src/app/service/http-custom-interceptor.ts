@@ -1,3 +1,5 @@
+/* eslint-disable arrow-body-style */
+/* eslint-disable @typescript-eslint/member-ordering */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable no-underscore-dangle */
 import { Injectable, OnDestroy } from '@angular/core';
@@ -12,6 +14,7 @@ import {
 import { BehaviorSubject, Observable, Subscription, throwError } from 'rxjs';
 import { map, catchError, filter, switchMap, take} from 'rxjs/operators';
 import { AuthService } from '../core/login/auth.service';
+import { IToken } from '../models/IToken';
 
 @Injectable({ providedIn: 'root' })
 //Called once, before the instance is destroyed.
@@ -33,9 +36,11 @@ export class HttpCustomInterceptor implements HttpInterceptor, OnDestroy {
   ): Observable<HttpEvent<any>> {
     const _userLogged = this.service.isLogged();
 
-    if (_userLogged && request.url.indexOf('Refresh') <= 0) {
+    if (_userLogged && !request.url.includes('Auth')) {
       const _tokenSessionString =
-        localStorage.getItem(SessionKey.TOKEN_DATA_SESSION) ?? '';
+        localStorage.getItem('token') ?? '';
+        console.log('ciao');
+        // localStorage.getItem(SessionKey.TOKEN_DATA_SESSION) ?? '';
       const _tokenSession = JSON.parse(_tokenSessionString);
       request = this.addToken(request, _tokenSession.token);
     }
@@ -64,6 +69,7 @@ export class HttpCustomInterceptor implements HttpInterceptor, OnDestroy {
   }
 
   private addToken(request: HttpRequest<any>, token: string) {
+    console.log(token);
     return request.clone({
       setHeaders: {
         // eslint-disable-next-line quote-props
@@ -72,32 +78,15 @@ export class HttpCustomInterceptor implements HttpInterceptor, OnDestroy {
     });
   }
 
-  private isRefreshing = false;
-  private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(
-    null
-  );
 
   private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
-    if (!this.isRefreshing) {
-      this.isRefreshing = true;
-      this.refreshTokenSubject.next(null);
 
-      return this.service.refreshToken().pipe(
-        switchMap((jwt: IToken) => {
-          this.isRefreshing = false;
-          this.refreshTokenSubject.next(jwt.token);
-          return next.handle(this.addToken(request, jwt.token));
-        })
-      );
-    } else {
-      return this.refreshTokenSubject.pipe(
-        filter((token) => token != null),
-        take(1),
-        switchMap((jwt) => {
-          return next.handle(this.addToken(request, jwt));
-        })
-      );
-    }
+    return this.service.refreshToken().pipe(
+      switchMap((jwt: IToken) => {
+        console.log('401 error');
+        return next.handle(this.addToken(request, jwt.data.token));
+      })
+    );
   }
 }
 

@@ -29,12 +29,14 @@ export class CentralService {
   //STAMPA TUTTI I PRODOTTI
   getAll() {
     const token = JSON.parse(localStorage.getItem('token')).token;
+    /*
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
+    */
     //console.log(this.auth.tok);
-    this.http.get<IGetAll>(`${environment.API.backend}/api/ShoppingCart`, {headers})
+    this.http.get<IGetAll>(`${environment.API.backend}/api/ShoppingCart`)
     .subscribe(result => {
       if (result.success) {
         this.products = result.data;
@@ -59,12 +61,14 @@ export class CentralService {
     //ELIMINA IL PRODOTTO PARTICOLARE
     deleteHandler(id: number){
     const token = JSON.parse(localStorage.getItem('token')).token;
+    /*
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       // eslint-disable-next-line quote-props
       'Authorization': `Bearer ${token}`
     });
-    this.http.delete<IDelete>(`${environment.API.backend}/api/ShoppingCart/${id}`, {headers})
+    */
+    this.http.delete<IDelete>(`${environment.API.backend}/api/ShoppingCart/${id}`)
     .subscribe(result => {
       if (result.success) {
         this.products = this.products.filter(product => product.id !== id);
@@ -82,20 +86,21 @@ export class CentralService {
   save(form: NgForm) {
     console.log(form.value);
     this.add(form);
-    this.router.navigateByUrl('nuovapagina');
+
   }
 
   //AGGIUNGE PRODOTTO AL DB
   add(form: NgForm) {
     const token = JSON.parse(localStorage.getItem('token')).token;
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    });
-    this.http.post<RespINewProd>(`${environment.API.backend}/api/ShoppingCart`, form.value, {headers})
+    // const headers = new HttpHeaders({
+    //   'Content-Type': 'application/json',
+    //   'Authorization': `Bearer ${token}`
+    // });
+    this.http.post<RespINewProd>(`${environment.API.backend}/api/ShoppingCart`, form.value)
     .subscribe(result => {
       if (result.success) {
         form.reset();
+        this.router.navigateByUrl('nuovapagina');
       }
       else {
         this.errorMessage = result.errorMessage;
@@ -107,11 +112,13 @@ export class CentralService {
   //OTTIENE INFO SU UN PRODOTTO
   info(id: number) {
     const token = JSON.parse(localStorage.getItem('token')).token;
+    /*
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    this.http.get<Products>(`${environment.API.backend}/api/ShoppingCart/${id}`, {headers})
+    */
+    this.http.get<Products>(`${environment.API.backend}/api/ShoppingCart/${id}`)
     .subscribe((result: Products) => {
       this.infoProd = result;
       console.log('info sul prodotto particolare: ', this.infoProd);
@@ -133,11 +140,13 @@ export class CentralService {
       orderDate: form.value.orderDate
     };
     const token = JSON.parse(localStorage.getItem('token')).token;
+    /*
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    this.http.put<RespINewProd>(`${environment.API.backend}/api/ShoppingCart`, bodyy, {headers} )
+    */
+    this.http.put<RespINewProd>(`${environment.API.backend}/api/ShoppingCart`, bodyy )
     .subscribe(result => {
       if (result.success) {
         console.log(this.products);
