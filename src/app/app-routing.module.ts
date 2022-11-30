@@ -20,6 +20,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'update/:id',
+    loadChildren: () => import('./update/update.module').then( m => m.UpdatePageModule),
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'login',
     loadChildren: () => import('./core/login/login/login.module').then(m => m.LoginPageModule),
   },

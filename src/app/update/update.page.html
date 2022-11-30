@@ -12,10 +12,42 @@
       indietro
     </button>
   </ion-row>
+
+      <div *ngIf="central.infoProd !== null" class="ion-padding info-product-detail"
+        style="text-align: center; text-transform: capitalize;">
+        <ion-card style="width: 100%!important;">
+          <ion-card-header>
+            <ion-card-title>Prodotto {{iddi}}</ion-card-title>
+            <ion-card-subtitle>Dettagli</ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-row>
+              <span class="detail-span-bold">nome:&nbsp;</span>
+              <span>{{central.infoProd.data.productName}}</span>
+            </ion-row>
+            <ion-row>
+              <span class="detail-span-bold">categoria:&nbsp;</span>
+              <span>{{central.infoProd.data.category}}</span>
+            </ion-row>
+            <ion-row>
+              <span class="detail-span-bold">quantità:&nbsp;</span>
+              <span>{{central.infoProd.data.quantity}}</span>
+            </ion-row>
+            <ion-row>
+              <span class="detail-span-bold">costo:&nbsp;</span>
+              <span>{{central.infoProd.data.unitCost}}€</span>
+            </ion-row>
+            <ion-row>
+              <span class="detail-span-bold">data dell' ordine:&nbsp;</span>
+              <span>{{central.infoProd.data.orderDate | date:'dd MM y'}} </span>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </div>
+
   <div class="ion-margin ion-padding-top">
     <form style="display: flex; flex-direction: column;width: 40%;" #g="ngForm">
-      <ion-label>ID</ion-label>
-      <input style="margin-bottom: 0.7em; border: hidden; border-top: 2px solid gray;border-right: 2px solid gray; border-radius: 0px 10px 5px 5px;" type="number" placeholder="id..." [ngModel] name="id" required>
       <ion-label>Categoria</ion-label>
       <input style="margin-bottom: 0.7em; border: hidden; border-bottom: 1px solid gray;" type="text" placeholder="Categoria..." [ngModel] name="category" required>
       <!-- <select style="margin-bottom: 0.7em;" placeholder="Product type:" [ngModel] id="type" name="category">

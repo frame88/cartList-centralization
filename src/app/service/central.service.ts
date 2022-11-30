@@ -133,7 +133,7 @@ export class CentralService {
     console.log(form);
     const bodyy: IModProd =
     {
-      id: form.value.id,
+      id: this.iddi,
       category: form.value.category,
       productName: form.value.productName,
       quantity: form.value.quantity,

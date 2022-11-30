@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { Products } from '../models/IGetAll';
 import { Router } from '@angular/router';
 
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-update',
   templateUrl: './update.page.html',
@@ -15,13 +16,17 @@ import { Router } from '@angular/router';
 export class UpdatePage implements OnInit {
   products: Products[] = [];
   acca;
+  iddi = +this.activatedRoute.snapshot.params.id;
+
   constructor(
     private http: HttpClient,
     private router: Router,
-    public central: CentralService
+    public central: CentralService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    this.central.info(this.iddi);
   }
 
 }

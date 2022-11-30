@@ -26,7 +26,7 @@
           <div style="width: 200px; display: flex; justify-content: space-around; align-items: center; background-color: rgba(255, 255, 255, 0.575); border-radius: 15px; height: 30px;">
             <ion-icon routerLink="/detail" routerLinkActive="active" style="border: 1px solid white; cursor: pointer; background-color: rgb(0, 236, 91); padding: 10px; border-radius: 50%; width: 20px; height: 20px;"
               name="information-circle-outline" (click)="this.central.info(product.id)"></ion-icon>
-            <ion-icon routerLink="/update" routerLinkActive="active" style="border: 1px solid white; cursor: pointer; background-color: rgb(157, 0, 255); padding: 10px; border-radius: 50%; width: 20px; height: 20px;"
+            <ion-icon [routerLink]="['/update', product.id]" style="border: 1px solid white; cursor: pointer; background-color: rgb(157, 0, 255); padding: 10px; border-radius: 50%; width: 20px; height: 20px;"
               name="pencil-outline"></ion-icon>
               <ion-icon style="border: 1px solid white; cursor: pointer;background-color: red; padding: 10px; border-radius: 50%; width: 20px; height: 20px;" name="close-sharp" (click)="this.central.deleteHandler(product.id)" onclick="areUsure()"></ion-icon>
             </div>
