@@ -1,17 +1,25 @@
 #crea {
+  display: flex;
+  justify-content: center;
   text-transform: capitalize;
-  padding: 1em;
   margin-bottom: 1em;
   border-radius: 10px;
-  background-color: yellowgreen;
-  border: 1px solid yellowgreen;
-  color: white;
+  background-color: rgb(255, 238, 0);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  color: black;
+  //border: 1px solid yellowgreen;
+  ion-icon {
+    transform: scale(1.1) !important;
+  }
 
   &:hover {
     transform: scale(1.1) !important;
-    background-color: hsl(80, 61%, 44%);
-    border: 1px solid rgba(153, 205, 50, 0.411);
+    //background-color: hsl(80, 61%, 44%);
+    //border: 1px solid rgba(153, 205, 50, 0.411);
     box-shadow: 5px 5px 10px #00000046;
+    background-color: rgb(235, 219, 0);
     transition-duration: 0.4s;
   }
 
@@ -25,13 +33,14 @@ span {
   display: block;
 }
 
-
+/*
 ion-icon:hover {
   transform: scale(1.4)!important;
   border-radius: 25%;
   //border: 2px solid white!important;
   transition-duration: 0.5s;
 }
+*/
 
 #prodakt:hover {
   transform: scale(1.05)!important;
@@ -65,5 +74,78 @@ ion-icon:hover {
 }
 
 
+
+/*________________nuova table_________________*/
+.label {
+  background-color: rgb(0, 175, 0);
+  color: white;
+  width: 110px;
+  padding: 10px;
+  border-radius: 15px 15px 0px 0px;
+  transform: translateY(-35px);
+  position: absolute;
+}
+
+.table-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: capitalize;
+
+  height: 60px;
+  width: 100%;
+  color: white;
+  background: radial-gradient(circle 976px at 51.2% 51%, rgba(11, 27, 103, 1) 0%, rgba(16, 66, 157, 1) 0%, rgba(11, 27, 103, 1) 17.3%, rgba(11, 27, 103, 1) 58.8%, rgba(11, 27, 103, 1) 71.4%, rgba(16, 66, 157, 1) 100.2%, rgba(187, 187, 187, 1) 100.2%);
+  margin-bottom: 20px;
+  border: 1;
+  border-radius: 5px;
+
+
+  &:hover {
+    font-size: 25px;
+    box-shadow: 5px 10px 10px #90ff4691;
+    letter-spacing: .1rem;
+    transition-duration: 0.5s;
+    cursor: pointer;
+  }
+}
+
+
+#new-x {
+  width: 15px;
+  height: 15px;
+  padding: 5px;
+  margin-bottom: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.37);
+  border-radius: 0px 50% 50% 0px;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  &:hover {
+    background-color: rgb(240, 0, 0);
+    border-radius: 50%;
+    transform: translateX(5px);
+    transition-duration: 0.5s;
+  }
+}
+
+#new-pencil {
+  width: 15px;
+  height: 15px;
+  padding: 5px;
+  margin-bottom: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.37);
+  border-radius: 0px 50% 50% 0px;
+  background-color: rgb(157, 0, 255);
+  color: white;
+  cursor: pointer;
+  &:hover {
+    background-color: rgb(148, 0, 240);
+    border-radius: 50%;
+    transform: translateX(5px);
+    transition-duration: 0.5s;
+  }
+}
 
 

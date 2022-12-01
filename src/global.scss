@@ -68,8 +68,11 @@ input:focus {
 }
 
 #container-list {
-  background-color: rgba(255, 17, 0, 0.801);
-  background-image: url('./assets/images/—Pngtree—abstract\ light\ effect\ blue\ natural_7487075.png');
+  //background-color: rgba(255, 17, 0, 0.801);
+  //background-image: url('./assets/images/—Pngtree—abstract\ light\ effect\ blue\ natural_7487075.png');
+  background-image: linear-gradient(to bottom, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+  background-size: cover;
+  background-color: black;
   //background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
 }
 
