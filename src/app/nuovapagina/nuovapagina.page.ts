@@ -26,5 +26,6 @@ export class NuovapaginaPage implements OnInit {
   ngOnInit() {
     console.log(this.central.getAll());
   }
+
 }
 

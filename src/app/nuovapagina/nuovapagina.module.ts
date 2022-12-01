@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { NuovapaginaPageRoutingModule } from './nuovapagina-routing.module';
 
 import { NuovapaginaPage } from './nuovapagina.page';
+import { DragAndDropModule } from 'angular-draggable-droppable';
 
 @NgModule({
   imports: [
@@ -14,7 +15,7 @@ import { NuovapaginaPage } from './nuovapagina.page';
     FormsModule,
     IonicModule,
     NuovapaginaPageRoutingModule,
-
+    DragAndDropModule
   ],
   declarations: [
     NuovapaginaPage,
